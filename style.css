@@ -154,7 +154,6 @@ body {
 }
 
 .contact-form {
-  position: relative;
   background-color: var(--white);
   padding: 1rem;
   border-radius: 1rem;
@@ -238,6 +237,10 @@ input:hover {
   border: 1px solid var(--green-600);
 }
 
+input[type="checkbox"]:focus {
+  outline: 1px solid var(--green-600);
+}
+
 input[type="radio"]:checked,
 input[type="checkbox"]:checked {
   accent-color: var(--green-600);
@@ -250,10 +253,13 @@ textarea:hover {
   border: 1px solid var(--green-600);
 }
 
-.submit-btn:hover {
+.submit-btn {
   cursor: pointer;
-  filter: brightness(70%);
   transition: all 0.3s;
+}
+
+.submit-btn:hover {
+  filter: brightness(70%);
 }
 
 /* Modal */
