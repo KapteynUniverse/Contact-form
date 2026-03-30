@@ -18,16 +18,19 @@
   </head>
   <body>
     <header class="sr-only">
-      <h1>WEBSITE</h1>
+      <h1>Main header placeholder</h1>
     </header>
     <main class="main">
-      <form name="contactForm" autocomplete="on" class="contact-form">
+      <form name="contactForm" class="contact-form">
         <h2>Contact Us</h2>
         <fieldset>
           <legend class="sr-only">Personal Information</legend>
           <div class="full-name flex-pc-row">
             <div class="fname flex-col gap">
-              <label for="fname">First Name <span class="star">*</span></label>
+              <label for="fname"
+                >First Name
+                <span class="star" aria-hidden="true">*</span></label
+              >
               <input
                 type="text"
                 id="fname"
@@ -43,7 +46,9 @@
               >
             </div>
             <div class="lname flex-col gap">
-              <label for="lname">Last Name <span class="star">*</span></label>
+              <label for="lname"
+                >Last Name <span class="star" aria-hidden="true">*</span></label
+              >
               <input
                 type="text"
                 id="lname"
@@ -59,7 +64,10 @@
             </div>
           </div>
           <div class="email flex-col gap">
-            <label for="email">Email Address <span class="star">*</span></label>
+            <label for="email"
+              >Email Address
+              <span class="star" aria-hidden="true">*</span></label
+            >
             <input
               id="email"
               name="email"
@@ -75,7 +83,9 @@
           </div>
         </fieldset>
         <fieldset class="query gap">
-          <legend>Query Type <span class="star">*</span></legend>
+          <legend>
+            Query Type <span class="star" aria-hidden="true">*</span>
+          </legend>
           <div id="query" class="flex-pc-row">
             <div class="radio gap">
               <input
@@ -107,7 +117,9 @@
           >
         </fieldset>
         <div class="message flex-col gap">
-          <label for="message">Message <span class="star">*</span></label>
+          <label for="message"
+            >Message <span class="star" aria-hidden="true">*</span></label
+          >
           <textarea
             name="message"
             id="message"
@@ -132,7 +144,7 @@
             />
             <label for="consent" class="consent">
               I consent to being contacted by the team
-              <span class="star">*</span></label
+              <span class="star" aria-hidden="true">*</span></label
             >
           </div>
           <span id="checkbox-error" class="error-message"
