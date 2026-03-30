@@ -135,6 +135,14 @@ h6 {
   font-weight: var(--fw-700);
 }
 
+.error-message.show {
+  display: block;
+}
+
+.invalid {
+  border: 1px solid hsl(0, 66%, 54%);
+}
+
 body {
   font-family: Karla;
   font-size: var(--fs-p);

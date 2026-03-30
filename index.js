@@ -1,102 +1,86 @@
-const success = document.getElementById("success");
-const button = document.querySelector("button");
+const form = document.querySelector(".contact-form");
 
-// Inputs
-const firstNameField = document.getElementById("fname");
-const lastNameField = document.getElementById("lname");
-const emailField = document.getElementById("email");
-const generalQueryField = document.getElementById("general-enquiry");
-const supportQueryField = document.getElementById("support-request");
-const messageField = document.getElementById("message");
-const consentField = document.getElementById("consent");
-
-const inputs = {
-  fname: firstNameField,
-  lname: lastNameField,
-  email: emailField,
-  firstQuery: generalQueryField,
-  secondQuery: supportQueryField,
-  message: messageField,
-  consent: consentField,
-};
-
-// Error messages
-const fnameError = document.getElementById("fname-error");
-const lnameError = document.getElementById("lname-error");
-const emailError = document.getElementById("email-error");
-const queryError = document.getElementById("query-error");
-const messageError = document.getElementById("message-error");
-const checkboxError = document.getElementById("checkbox-error");
-
-const errors = {
-  fname: fnameError,
-  lname: lnameError,
-  email: emailError,
-  query: queryError,
-  message: messageError,
-  consent: checkboxError,
-};
-
-button.addEventListener("click", validate);
-
-function validate(e) {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  let isValid = true;
 
-  hideAllErrors();
+  let hasError = false;
 
-  if (!firstNameField.value.trim()) {
-    isValid = false;
-    errors.fname.style.display = "block";
-    inputs.fname.style.border = "1px solid var(--red)";
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+
+  // --- TEXT + TEXTAREA ---
+  const fields = form.querySelectorAll(
+    "input[type='text'], input[type='email'], textarea",
+  );
+
+  fields.forEach((field) => {
+    const error = getErrorEl(field);
+
+    if (field.value.trim() === "") {
+      showError(field, error);
+      hasError = true;
+    } else {
+      hideError(field, error);
+    }
+  });
+
+  // --- EMAIL ---
+  const emailField = form.querySelector("#email");
+  if (data.email && !validateEmail(data.email)) {
+    showError(emailField, getErrorEl(emailField));
+    hasError = true;
   }
 
-  if (!lastNameField.value.trim()) {
-    isValid = false;
-    errors.lname.style.display = "block";
-    inputs.lname.style.border = "1px solid var(--red)";
+  // --- RADIO (QUERY) ---
+  const radios = form.querySelectorAll('input[name="query"]');
+  const queryError = document.getElementById("query-error");
+
+  if (!data.query) {
+    queryError.classList.add("show");
+    radios.forEach((r) => r.setAttribute("aria-invalid", "true"));
+    hasError = true;
+  } else {
+    queryError.classList.remove("show");
+    radios.forEach((r) => r.setAttribute("aria-invalid", "false"));
   }
 
-  if (!validateEmail(emailField.value)) {
-    isValid = false;
-    errors.email.style.display = "block";
-    inputs.email.style.border = "1px solid var(--red)";
+  // --- CHECKBOX ---
+  const checkbox = form.querySelector("#consent");
+  if (!data.consent) {
+    showError(checkbox, getErrorEl(checkbox));
+    hasError = true;
+  } else {
+    hideError(checkbox, getErrorEl(checkbox));
   }
 
-  if (!generalQueryField.checked && !supportQueryField.checked) {
-    isValid = false;
-    errors.query.style.display = "block";
+  // --- SUCCESS ---
+  if (!hasError) {
+    document.getElementById("success").classList.remove("hidden");
+    form.reset();
   }
+});
 
-  if (!messageField.value.trim()) {
-    isValid = false;
-    errors.message.style.display = "block";
-    inputs.message.style.border = "1px solid var(--red)";
-  }
-
-  if (!consentField.checked) {
-    isValid = false;
-    errors.consent.style.display = "block";
-  }
-
-  if (isValid) {
-    success.classList.remove("hidden");
-    setTimeout(function () {
-      location.reload();
-    }, 1000);
-  }
+// --- HELPERS ---
+function getErrorEl(field) {
+  return document.getElementById(field.getAttribute("aria-describedby"));
 }
 
-function hideAllErrors() {
-  Object.values(errors).forEach((error) => {
-    error.style.display = "none";
-  });
-  Object.values(inputs).forEach((input) => {
-    input.style.border = "1px solid var(--grey-500)";
-  });
+function showError(field, errorEl) {
+  if (!errorEl) return;
+
+  errorEl.classList.add("show");
+  field.setAttribute("aria-invalid", "true");
+  field.classList.add("invalid");
+}
+
+function hideError(field, errorEl) {
+  if (!errorEl) return;
+
+  errorEl.classList.remove("show");
+  field.setAttribute("aria-invalid", "false");
+  field.classList.remove("invalid");
 }
 
 function validateEmail(email) {
-  const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  return re.test(String(email).toLowerCase());
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 }
