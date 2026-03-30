@@ -154,6 +154,11 @@ body {
   margin-inline: 1em;
 }
 
+fieldset {
+  border: none;
+  padding: 0;
+}
+
 label {
   font-size: 1rem;
   font-weight: var(--fw-700);

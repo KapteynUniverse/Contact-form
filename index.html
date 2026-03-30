@@ -23,63 +23,65 @@
     <main class="main">
       <form name="contactForm" autocomplete="on" class="contact-form">
         <h2>Contact Us</h2>
-        <div class="full-name flex-pc-row">
-          <div class="fname flex-col gap">
-            <label for="fname">First Name <span class="star">*</span></label>
+        <fieldset>
+          <legend class="sr-only">Personal Information</legend>
+          <div class="full-name flex-pc-row">
+            <div class="fname flex-col gap">
+              <label for="fname">First Name <span class="star">*</span></label>
+              <input
+                type="text"
+                id="fname"
+                name="fname"
+                required
+                autofocus
+                aria-invalid="true"
+                aria-describedby="fname-error"
+                autocomplete="given-name"
+              />
+              <span id="fname-error" class="error-message"
+                >This field is required</span
+              >
+            </div>
+            <div class="lname flex-col gap">
+              <label for="lname">Last Name <span class="star">*</span></label>
+              <input
+                type="text"
+                id="lname"
+                name="lname"
+                required
+                aria-invalid="true"
+                aria-describedby="lname-error"
+                autocomplete="family-name"
+              />
+              <span id="lname-error" class="error-message"
+                >This field is required</span
+              >
+            </div>
+          </div>
+          <div class="email flex-col gap">
+            <label for="email">Email Address <span class="star">*</span></label>
             <input
-              type="text"
-              id="fname"
-              name="fname"
+              id="email"
+              name="email"
+              type="email"
               required
-              autofocus
               aria-invalid="true"
-              aria-describedby="fname-error"
-              autocomplete="given-name"
+              aria-describedby="email-error"
+              autocomplete="email"
             />
-            <span id="fname-error" class="error-message"
-              >This field is required</span
+            <span id="email-error" class="error-message"
+              >Please enter a valid email address</span
             >
           </div>
-          <div class="lname flex-col gap">
-            <label for="lname">Last Name <span class="star">*</span></label>
-            <input
-              type="text"
-              id="lname"
-              name="lname"
-              required
-              aria-invalid="true"
-              aria-describedby="lname-error"
-              autocomplete="family-name"
-            />
-            <span id="lname-error" class="error-message"
-              >This field is required</span
-            >
-          </div>
-        </div>
-        <div class="email flex-col gap">
-          <label for="email">Email Address <span class="star">*</span></label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            aria-invalid="true"
-            aria-describedby="email-error"
-            autocomplete="email"
-          />
-          <span id="email-error" class="error-message"
-            >Please enter a valid email address</span
-          >
-        </div>
-        <div class="query gap">
-          <label for="query">Query Type <span class="star">*</span></label>
+        </fieldset>
+        <fieldset class="query gap">
+          <legend>Query Type <span class="star">*</span></legend>
           <div id="query" class="flex-pc-row">
             <div class="radio gap">
               <input
                 type="radio"
                 name="query"
                 id="general-enquiry"
-                name="query"
                 value="General"
                 aria-invalid="true"
                 aria-describedby="query-error"
@@ -92,7 +94,6 @@
                 type="radio"
                 name="query"
                 id="support-request"
-                name="query"
                 value="Support"
                 aria-invalid="true"
                 aria-describedby="query-error"
@@ -104,7 +105,7 @@
           <span id="query-error" class="error-message"
             >Please select a query type</span
           >
-        </div>
+        </fieldset>
         <div class="message flex-col gap">
           <label for="message">Message <span class="star">*</span></label>
           <textarea
