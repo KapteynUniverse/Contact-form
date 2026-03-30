@@ -1,5 +1,6 @@
 const form = document.querySelector(".contact-form");
 const successModal = document.getElementById("success");
+const progressFill = successModal.querySelector(".progress-fill");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -55,7 +56,7 @@ form.addEventListener("submit", (e) => {
 
   // --- SUCCESS ---
   if (!hasError) {
-    successModal.showModal();
+    openModal();
     form.reset();
   }
 });
@@ -83,4 +84,37 @@ function hideError(field, errorEl) {
 
 function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
+}
+
+function openModal() {
+  successModal.showModal();
+
+  // Reset progress
+  progressFill.style.width = "0%";
+
+  // Animate progress bar
+  requestAnimationFrame(() => {
+    progressFill.style.width = "100%";
+  });
+
+  // Close after 3 second
+  const timer = setTimeout(() => {
+    closeModal();
+  }, 3000);
+
+  // Close on click outside modal content
+  successModal.addEventListener(
+    "click",
+    (e) => {
+      if (e.target === successModal) {
+        clearTimeout(timer);
+        closeModal();
+      }
+    },
+    { once: true },
+  );
+}
+
+function closeModal() {
+  successModal.close();
 }
