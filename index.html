@@ -86,35 +86,31 @@
           <legend>
             Query Type <span class="star" aria-hidden="true">*</span>
           </legend>
-          <div id="query" class="flex-pc-row">
-            <div class="radio gap">
+          <div class="flex-pc-row">
+            <label>
               <input
                 type="radio"
                 name="query"
-                id="general-enquiry"
                 value="General"
-                aria-invalid="true"
                 aria-describedby="query-error"
                 required
               />
-              <label for="general-enquiry">General Enquiry</label>
-            </div>
-            <div class="radio gap">
+              General Enquiry
+            </label>
+            <label>
               <input
                 type="radio"
                 name="query"
-                id="support-request"
                 value="Support"
-                aria-invalid="true"
                 aria-describedby="query-error"
                 required
               />
-              <label for="support-request">Support Request</label>
-            </div>
+              Support Request
+            </label>
           </div>
-          <span id="query-error" class="error-message"
-            >Please select a query type</span
-          >
+          <span id="query-error" class="error-message">
+            Please select a query type
+          </span>
         </fieldset>
         <div class="message flex-col gap">
           <label for="message"
