@@ -1,4 +1,5 @@
 const form = document.querySelector(".contact-form");
+const successModal = document.getElementById("success");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -15,7 +16,6 @@ form.addEventListener("submit", (e) => {
 
   fields.forEach((field) => {
     const error = getErrorEl(field);
-
     if (field.value.trim() === "") {
       showError(field, error);
       hasError = true;
@@ -55,7 +55,7 @@ form.addEventListener("submit", (e) => {
 
   // --- SUCCESS ---
   if (!hasError) {
-    document.getElementById("success").classList.remove("hidden");
+    successModal.showModal();
     form.reset();
   }
 });

@@ -124,7 +124,6 @@ h6 {
   gap: 1rem;
 }
 
-.hidden,
 .error-message {
   display: none;
 }
@@ -261,16 +260,20 @@ textarea:hover {
 /* Modal */
 
 .success {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(-25%, -25%);
+  border: none;
   background-color: var(--grey-900);
   color: var(--white);
   border-radius: 0.5rem;
   padding: 1rem 1.5rem;
   font-size: 1rem;
-  width: 65%;
+  margin: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}
+
+.success::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 h3 {
@@ -305,10 +308,6 @@ h3::before {
   }
 
   textarea {
-    min-height: 6rem;
-  }
-
-  .success {
-    transform: translate(-25%, -100%);
+    min-height: 5lh;
   }
 }
