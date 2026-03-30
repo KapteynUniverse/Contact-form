@@ -147,21 +147,18 @@
             >To submit this form, please consent to being contacted</span
           >
         </div>
-        <button class="submit-btn" aria-haspopup="dialog" aria-expanded="false">
-          Submit
-        </button>
-
-        <dialog id="success" class="success">
-          <div class="modal-content">
-            <h3>Message Sent!</h3>
-            <p>Thanks for completing the form. We'll be in touch soon!</p>
-          </div>
-          <!-- Progress bar -->
-          <div class="progress-bar">
-            <div class="progress-fill"></div>
-          </div>
-        </dialog>
+        <button class="submit-btn" aria-haspopup="dialog">Submit</button>
       </form>
+      <dialog id="success" class="success">
+        <div class="modal-content">
+          <h1>Message Sent!</h1>
+          <p>Thanks for completing the form. We'll be in touch soon!</p>
+        </div>
+        <!-- Progress bar -->
+        <div class="progress-bar" aria-hidden="true">
+          <div class="progress-fill"></div>
+        </div>
+      </dialog>
     </main>
     <script type="module" src="./index.js"></script>
   </body>

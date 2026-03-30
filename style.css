@@ -158,7 +158,6 @@ body {
   background-color: var(--white);
   padding: 1rem;
   border-radius: 1rem;
-  margin-inline: 1rem;
 }
 
 fieldset {
@@ -294,11 +293,11 @@ textarea:hover {
   transition: width 3s linear;
 }
 
-h3 {
+.success h1 {
   margin-bottom: 0.5rem;
 }
 
-h3::before {
+.success h1::before {
   content: "";
   display: inline-block;
   background-image: url(./assets/images/icon-success-check.svg);

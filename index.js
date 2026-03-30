@@ -116,5 +116,6 @@ function openModal() {
 }
 
 function closeModal() {
+  progressFill.style.width = "0%";
   successModal.close();
 }
